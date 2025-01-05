@@ -10,36 +10,33 @@ export function Pricing() {
     {
       name: "Basic",
       price: "19",
+      description: "Customize your business journey suite",
       features: [
-        "Up to 5 team members",
-        "Basic task management",
-        "Limited analytics",
-        "Email support",
+        "Basic HR features to manage employee information and attendance.",
+        "Suitable for organizations with a limited number of employees.",
       ],
+      priceDetail: "/ per month"
     },
     {
       name: "Pro",
       price: "49",
+      description: "Customize your business journey suite",
       features: [
-        "Up to 20 team members",
-        "Advanced task management",
-        "Full analytics suite",
-        "Priority support",
-        "Custom integrations",
+        "Basic HR features to manage employee information and attendance.",
+        "Suitable for organizations with a limited number of employees.",
       ],
       popular: true,
+      priceDetail: "/ per month"
     },
     {
       name: "Team",
       price: "109",
+      description: "Customize your business journey suite",
       features: [
-        "Unlimited team members",
-        "Enterprise-grade security",
-        "Advanced analytics & reporting",
-        "24/7 phone support",
-        "Custom training",
-        "Dedicated account manager",
+        "Basic HR features to manage employee information and attendance.",
+        "Suitable for organizations with a limited number of employees.",
       ],
+      priceDetail: "+ $10$ per user per month"
     },
   ];
 
@@ -53,11 +50,17 @@ export function Pricing() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Simple, Transparent Pricing
+          <div className="inline-block bg-gray-100 rounded-full px-4 py-1 mb-4">
+            <span className="text-emerald-500 mr-2">♦</span>
+            Our Pricing
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            Streamline Your Work With <br /> Ease.{" "}
+            <span className="text-emerald-500">Start For Free.</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Choose the plan that best fits your needs. All plans include a 14-day free trial.
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Customize your business journey effortlessly with Youflow's dashboard, 
+            backed by a suite of powerful tools at your fingertips.
           </p>
         </motion.div>
 
@@ -70,33 +73,41 @@ export function Pricing() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className={`p-6 h-full ${plan.popular ? 'border-primary shadow-lg' : ''}`}>
+              <Card className={`p-8 h-full ${plan.popular ? 'bg-emerald-500 text-white' : 'bg-gray-50'}`}>
                 {plan.popular && (
-                  <span className="bg-primary text-primary-foreground text-sm font-semibold px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">
-                    Most Popular
+                  <span className="bg-white text-emerald-500 text-sm font-medium px-4 py-1 rounded-full absolute -top-3 right-8">
+                    Most popular
                   </span>
                 )}
-                <div className="text-center mb-6">
-                  <h3 className="text-xl font-semibold mb-2">{plan.name}</h3>
-                  <div className="flex items-center justify-center">
-                    <span className="text-3xl font-bold">${plan.price}</span>
-                    <span className="text-gray-600 ml-2">/month</span>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold mb-6">{plan.name}</h3>
+                  <div className="flex items-baseline">
+                    <span className="text-gray-400">$</span>
+                    <span className="text-4xl font-bold">{plan.price}</span>
+                    <span className={`ml-2 ${plan.popular ? 'text-white/80' : 'text-gray-600'}`}>
+                      {plan.priceDetail}
+                    </span>
                   </div>
+                  <p className={`mt-4 ${plan.popular ? 'text-white/80' : 'text-gray-600'}`}>
+                    {plan.description}
+                  </p>
                 </div>
-                <ul className="space-y-3 mb-6">
+                <Button
+                  className="w-full mb-8"
+                  variant={plan.popular ? "secondary" : "outline"}
+                >
+                  Get lifetime access
+                </Button>
+                <ul className="space-y-4">
                   {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center">
-                      <Check className="text-primary mr-2 h-5 w-5" />
-                      <span className="text-gray-600">{feature}</span>
+                    <li key={featureIndex} className="flex items-start gap-3">
+                      <span className={`${plan.popular ? 'text-white' : 'text-emerald-500'}`}>→</span>
+                      <span className={plan.popular ? 'text-white/80' : 'text-gray-600'}>
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
-                <Button
-                  className="w-full"
-                  variant={plan.popular ? "default" : "outline"}
-                >
-                  Get Started
-                </Button>
               </Card>
             </motion.div>
           ))}
